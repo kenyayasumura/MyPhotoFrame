@@ -82,7 +82,7 @@ class SecondViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBAction func dissmissSecondVC(_ sender: Any) {
         UIView.transition(with: imageView,
-            duration: 0.5,
+            duration: animationDuration,
             options: .transitionCrossDissolve,
             animations: { [weak self] in
             self!.imageView.alpha = 0

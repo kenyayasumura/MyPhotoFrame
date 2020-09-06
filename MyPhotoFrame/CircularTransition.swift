@@ -74,11 +74,13 @@ extension CircularTransition: UIViewControllerAnimatedTransitioning {
                 let viewSize = returningView.frame.size
                 
                 circle.frame = frameForCircle(withViewCenter: viewCenter, size: viewSize, startPoint: startingPoint)
+                circle.layer.cornerRadius = circle.frame.size.height / 2
+                circle.center = startingPoint
                 
                 UIView.animate(withDuration: duration, animations: {
                     self.circle.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
-                    returningView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
                     returningView.center = self.startingPoint
+                    returningView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
                     returningView.alpha = 0
                     if self.transitionMode == .pop {
                         containerView.insertSubview(returningView, belowSubview: returningView)
