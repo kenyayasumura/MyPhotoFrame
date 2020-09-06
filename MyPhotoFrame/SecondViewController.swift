@@ -40,6 +40,15 @@ class SecondViewController: UIViewController, UIGestureRecognizerDelegate {
         dissmissBtn.isHidden = true
         imageView.image = photoArray[index]
         animateImageView()
+        imageView.alpha = 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration) {
+            UIView.transition(with: self.imageView,
+                              duration: self.animationDuration,
+                              options: .transitionCrossDissolve,
+                              animations: { [weak self] in
+                                  self!.imageView.alpha = 1
+                              }, completion: nil)
+        }
     }
     
     func animateImageView() {
@@ -82,7 +91,7 @@ class SecondViewController: UIViewController, UIGestureRecognizerDelegate {
                 let preVC = self.presentingViewController as! ViewController
                 preVC.orientationFlg = true
             
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + self.animationDuration) {
                     self.dismiss(animated: true, completion: nil)
                 }
             })
